@@ -59,12 +59,14 @@ Unfortunatly we don't have a Mac to compile the project for ios, but in the case
 
 ### Controller Configuration
 
-<img src="Snake-Game/Assets/icon/configuration.gif" alt="Expenses" width="600">
+<img src="Snake-Game/Assets/icon/configuration.gif" alt="configuration" width="600">
 
 ### Game
 
-<img src="Snake-Game/Assets/icon/game.gif" alt="Expenses" width="600">
+(this may take time to load in github)
 
-### view from cell phone
+<img src="Snake-Game/Assets/icon/game.gif" alt="game" width="600">
 
-<img src="Snake-Game/Assets/icon/screenshot.png" alt="Expenses" width="600">
+### View from cell phone
+
+<img src="Snake-Game/Assets/icon/Screenshot.png" alt="view from cell phone" width="600">

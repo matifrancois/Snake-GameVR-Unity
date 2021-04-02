@@ -6,45 +6,61 @@ public class SnakeMovement : MonoBehaviour
 {
     public List<Transform> BodyParts = new List<Transform>();
     public float minDistance = 0.25f;
-    public float speed = 1;
+    public int index_menu;
     public float rotationSpeed = 50;
     public GameObject bodyPrefab;
     public int beginsize;
-
+    public bool isInPause = false;
+    public bool isInMapping = true;
+    public string R1;
+    public bool changeSnakeAxis;
 
     private float dist;
     private Transform curBodyPart;
     private Transform prevBodyPart;
-
+    private float[] speed = { 2, 3, 5 };
+    private float curspeed;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        changeSnakeAxis = false;
+        //R1 = "";
         for (int i = 0; i < beginsize-1; i++)
         {
             AddBodyPart();
         }
+        index_menu = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(!isInPause && !isInMapping)
+            Move();
     }
 
     public void Move()
     {
-        float curspeed = speed;
+        curspeed = speed[index_menu % 3];
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(R1))
             curspeed *= 2;
 
         //here we use smooth delta time because it has better results in the simulation
         BodyParts[0].Translate(BodyParts[0].forward * curspeed * Time.smoothDeltaTime, Space.World);
 
-        if (Input.GetAxis("Horizontal") != 0)
-            BodyParts[0].Rotate(Vector3.up * rotationSpeed * Time.deltaTime * Input.GetAxis("Horizontal"));
+        if (!changeSnakeAxis)
+        {
+            if (Input.GetAxis("Horizontal") != 0)
+                BodyParts[0].Rotate(Vector3.up * rotationSpeed * Time.deltaTime * Input.GetAxis("Horizontal"));
+        }
+        else
+        {
+            if (Input.GetAxis("Vertical") != 0)
+                BodyParts[0].Rotate(Vector3.up * rotationSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
+        }
 
         //start in 1 because the zero element was modified before
         for (int i = 1; i < BodyParts.Count; i++)
@@ -70,8 +86,14 @@ public class SnakeMovement : MonoBehaviour
     public void AddBodyPart()
     {
         //we generate the new part with this
-        Transform newPart = (Instantiate(bodyPrefab, BodyParts[BodyParts.Count - 1].position, BodyParts[BodyParts.Count - 1].rotation) as GameObject).transform;
+        GameObject bodypart = Instantiate(bodyPrefab, BodyParts[BodyParts.Count - 1].position, BodyParts[BodyParts.Count - 1].rotation) as GameObject;
+        if (BodyParts.Count == 1)
+        {
+            bodypart.gameObject.name = "second";
+        }
+        Transform newPart = (bodypart).transform;
         newPart.SetParent(transform);
+        
         BodyParts.Add(newPart);
     }
 }

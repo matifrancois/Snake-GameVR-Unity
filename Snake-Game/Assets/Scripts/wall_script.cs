@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class wall : MonoBehaviour
+public class wall_script : MonoBehaviour
 {
     public bool gameOver = false;
 
@@ -18,9 +18,14 @@ public class wall : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
+
+        if (other.gameObject.name == "Snake" || other.gameObject.name == "bodySnake" || other.gameObject.name == "SnakeHead")
+        {
             gameOver = true;
-       
+            Debug.Log("Game Over");
+        }
     }
+
 }

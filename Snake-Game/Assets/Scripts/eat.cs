@@ -5,7 +5,7 @@ using UnityEngine;
 public class eat : MonoBehaviour
 {
     public bool crashed = false;
-    //public bool gameOver = false;
+    public bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,17 +17,26 @@ public class eat : MonoBehaviour
     {
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name == "littleDuck")
+        if (other.gameObject.name == "littleDuck")
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             crashed = true;
         }
-        //else if (collision.gameObject.name == "wall")
-        //{
-        //    gameOver = true;
-        //}
+        if (other.gameObject.name == "bodySnake(Clone)")
+        {
+            gameOver = true;
+            Debug.Log("me comi a mi mismo");
+        }
     }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.name == "littleDuck")
+    //    {
+    //        Destroy(collision.gameObject);
+    //        crashed = true;
+    //    }
+    //}
 
 }

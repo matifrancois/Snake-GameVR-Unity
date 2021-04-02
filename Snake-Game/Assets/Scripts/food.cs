@@ -14,11 +14,13 @@ public class food : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(isfine == false)
+            isfine = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        isfine = false;
+        if(other.gameObject.name == "Snake" || other.gameObject.name == "bodySnake(Clone)" || other.gameObject.name == "second")
+            isfine = false;
     }
 }

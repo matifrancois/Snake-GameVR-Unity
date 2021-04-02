@@ -65,7 +65,7 @@ Unfortunatly we don't have a Mac to compile the project for ios, but in the case
 
 (this may take time to load in github)
 
-<img src="Snake-Game/Assets/icon/game.gif" alt="game" width="600">
+<img src="Snake-Game/Assets/icon/game_fast.gif" alt="game_fast" width="600">
 
 ### View from cell phone
 
